@@ -1,0 +1,6 @@
+ITPC_CTX_PerfData_CL
+| where TimeGenerated > ago(24h)
+| where Category == "Processor Information" and Counter_s == "% Processor Time"
+| summarize CPU_used = avg(value_d) by Worker_s, TimeGenerated = bin(TimeGenerated - 7h, 1h)
+| sort by TimeGenerated desc
+| render timechart
