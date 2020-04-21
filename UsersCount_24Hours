@@ -1,0 +1,4 @@
+ITPC_CTX_Session_CL
+| summarize AggregatedValue = dcount(SessionHash_s) by TimeInterval = format_datetime(bin(TimeGenerated - 7h, 1h), 'M/d/yyyy HH tt'), ConnectionState_s  //bin(TimeGenerated, 1h) -7h
+| sort by TimeInterval desc
+| project TimeInterval, ConnectionState_s , User_Count = AggregatedValue 
