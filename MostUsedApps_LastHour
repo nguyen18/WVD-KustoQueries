@@ -1,6 +1,0 @@
-ITPC_CTX_Process_CL
-| where TimeGenerated > ago(1h)
-| where UserName_s !=""
-| summarize AggregatedValue = avg(WorkingSet_d) by TimeInterval = format_datetime(bin(TimeGenerated - 7h, 1h), 'M/d/yyyy HH tt'), UserName_s, Worker_s, Name_s
-| sort by AggregatedValue desc
-| project TimeInterval, UserName_s, Name_s, AggregatedValue
