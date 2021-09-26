@@ -1,3 +1,6 @@
+# Active Users Chart over 30 Days
+Monitors all active users on the WVD over a 30 day period.
+
 ```OQL
 ITPC_CTX_Session_CL
 | where TimeGenerated > ago(30d)
